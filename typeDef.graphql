@@ -1,0 +1,46 @@
+# Interface : Base
+interface Base {
+  id: ID!
+  name: String! 
+}
+# Interface : Management
+interface Management{
+  phoneNumber: String!
+}
+
+# Custom Scalar Type
+scalar Datetime
+
+# Input types
+input ProductInput {
+  name: String,
+  price: Int,
+  description: String
+}
+
+enum ProductType {
+  GADGET
+  FOOD
+  SOFTWARE
+}
+
+
+# Product type
+type Product {
+  id: ID!,
+  name: String,
+  price: Int,
+  description: String
+}
+
+
+# Query
+type Query{
+  getAllProduct:[Product!]!
+  getProduct(id: ID!): [Product!]!
+}
+
+# Mutation
+type Mutation{
+  addProduct(input: ProductInput): Int
+}
