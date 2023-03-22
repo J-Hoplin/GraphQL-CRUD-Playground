@@ -4,10 +4,14 @@
     "@faker-js/faker": "^7.6.0",
     "@types/faker": "^6.6.9",
     "axios": "^1.3.4",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
     "graphql": "^16.6.0",
     "uuid": "^9.0.0"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.13",
     "@types/graphql": "^14.5.0",
     "@types/node": "^18.15.5",
     "@types/uuid": "^9.0.1",
@@ -15,6 +19,7 @@
     "typescript": "^5.0.2"
   },
   "scripts": {
+    "start-server-standalone": "./node_modules/.bin/tsc && node ./dist/server-stand-alone.js ",
     "start-server": "./node_modules/.bin/tsc && node ./dist/server.js ",
     "add": "node clients/add-product-client.js",
     "update": "node clients/update-product-client.js",

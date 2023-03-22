@@ -11,5 +11,5 @@ RUN npm i\
 
 EXPOSE 4000
 
-CMD [ "start-server" ]
+CMD [ "start-server-standalone" ]
 ENTRYPOINT [ "npm", "run" ]
