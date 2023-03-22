@@ -13,5 +13,11 @@
     "@types/uuid": "^9.0.1",
     "tslint": "^6.1.3",
     "typescript": "^5.0.2"
+  },
+  "scripts": {
+    "start-server": "./node_modules/.bin/tsc && node ./dist/server.js ",
+    "add": "node clients/add-product-client.js",
+    "update": "node clients/update-product-client.js",
+    "delete": "node clients/delete-product-client.js"
   }
 }

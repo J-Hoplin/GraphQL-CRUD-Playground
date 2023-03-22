@@ -16,6 +16,13 @@ export interface ProductInput {
   description?: string
 }
 
+export interface DeleteProductInput {
+  id: string
+}
+
+// 요청이 넘어올때 serialize 과정에 의해 string으로 넘어온다
+export interface UpdateProductInput extends ProductInput, DeleteProductInput { }
+
 export interface InputRequest {
-  input: ProductInput
+  input: object
 }

@@ -18,6 +18,20 @@ input ProductInput {
   description: String
 }
 
+# Input types Update Product
+input UpdateProductInput{
+  id: ID!
+  name: String,
+  price: Int,
+  description: String
+}
+
+# Input types Delete Product
+input DeleteProductInput{
+  id: ID!
+}
+
+
 enum ProductType {
   GADGET
   FOOD
@@ -42,5 +56,7 @@ type Query{
 
 # Mutation
 type Mutation{
-  addProduct(input: ProductInput): Int
+  addProduct(input: ProductInput): Boolean
+  updateProduct(input: UpdateProductInput): Boolean
+  deleteProduct(input: DeleteProductInput): Boolean
 }
