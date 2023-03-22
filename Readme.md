@@ -58,7 +58,7 @@ localhost:4000
 ## How to use playground?
 
 ### GET
-You need to connect to GraphQL Playground in `localhost:4000`
+You need to connect to GraphQL Playground in `localhost:4000`. Type GraphQL Query in `Operation` tab and press blue button above to execute!
 
 - Get all product values
   ```graphql
@@ -71,6 +71,7 @@ You need to connect to GraphQL Playground in `localhost:4000`
     }
   }
   ```
+  ![img](./img/1.png)
 
 - Get product by id : Please type id you want to find
   ```graphql
@@ -82,6 +83,24 @@ You need to connect to GraphQL Playground in `localhost:4000`
     }
   }
   ```
+  ![img](./img/2.png)
+
+- Get all product values & Get product by id
+  ```graphql
+  query GetAllProduct {
+    getAllProduct {
+      id
+      name
+      price
+    }
+    getProduct(id: (id you want to find) ) {
+      description
+      id
+      name
+    }
+  }
+  ```
+  ![img](./img/3.png)
 
 ### CREATE, UPDATE, DELETE
 Some custom clients were build for playground in this [directory](./clients/). Please refer to commands under below 
