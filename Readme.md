@@ -4,7 +4,7 @@ GraphQL CRUD
 - Simple GraphQL CRUD playground using in-memory array
 - This repository is a reference repository for my presentation on GraphQL during class (종합설계, [Prof. 김병서](http://bcnlab.hongik.ac.kr/professor.html))
 ***
-## GraphQL Query, Mutation, Object used in Playground
+# GraphQL Query, Mutation, Object used in Playground
 ```graphql
 
 # Root Type : Query
@@ -31,9 +31,36 @@ type Product {
 - Resolvers exis in [here](./src/Resolver/)
 - **This playground do not use any SQL or NoSQL.(Data Persistency not in guranteed)**
 ***
-## Let's build playground!
+# Let's build playground!
+
+## Using local Node.js engine
 
 ### Prerequisite
+
+- Node.js >= v.18
+
+1. Install dev-dependencies
+
+```bash
+npm i -D
+```
+
+2. Install dependencies
+
+```bash
+npm i
+```
+
+3. Execute Server
+
+```bash
+npm run start-server-standalone
+```
+
+## Using Docker!
+
+### Prerequisite
+
 - Docker
 - Git
 
@@ -55,9 +82,9 @@ docker run -d --name gqtest -p 4000:4000 graphqltest
 ```
 localhost:4000
 ```
-## How to use playground?
+# How to use playground?
 
-### GET
+## GET
 You need to connect to GraphQL Playground in `localhost:4000`. Type GraphQL Query in `Operation` tab and press blue button above to execute!
 
 - Get all product values
@@ -102,7 +129,7 @@ You need to connect to GraphQL Playground in `localhost:4000`. Type GraphQL Quer
   ```
   ![img](./img/3.png)
 
-### CREATE, UPDATE, DELETE
+## CREATE, UPDATE, DELETE
 Some custom clients were build for playground in this [directory](./clients/). Please refer to commands under below 
 
 - CREATE : create random product values using [faker.js](https://fakerjs.dev)
