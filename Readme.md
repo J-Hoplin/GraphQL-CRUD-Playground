@@ -32,7 +32,12 @@ type Product {
 - **This playground do not use any SQL or NoSQL.(Data Persistency not in guranteed)**
 ***
 # Let's build playground!
+First clone project and convert directory to playground source code directory!
+```bash
+git clone https://github.com/J-hoplin1/GraphQL-CRUD-Playground.git
 
+cd GraphQL-CRUD-Playground
+```
 ## Using local Node.js engine
 
 ### Prerequisite
