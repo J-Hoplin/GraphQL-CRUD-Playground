@@ -74,7 +74,7 @@ cd GraphQL-CRUD-Playground
 1. Build docker compose image
 
 ```bash
-docker-compose up -d
+docker compose up -d
 ```
 
 2. Connect to localhost 
