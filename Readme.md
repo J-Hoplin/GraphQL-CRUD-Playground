@@ -9,24 +9,44 @@ GraphQL CRUD
 
 # Root Type : Query
 type Query{
-  getAllProduct:[Product!]!
   getProduct(id: ID!): [Product!]!
+  getManager(id: ID!): [Manager!]!
+  getAllProduct:[Product!]!
+  getAllManagers:[Manager!]!
 }
 
 # Root Type : Mutation
 type Mutation{
-  addProduct(input: ProductInput): Boolean
-  updateProduct(input: UpdateProductInput): Boolean
-  deleteProduct(input: DeleteProductInput): Boolean
+  addManager(input: ManagerInput):MutationResponse!
+  addProduct(input: ProductInput): MutationResponse!
+  updateProduct(update: UpdateProductInput): MutationResponse!
+  updateManager(update: UpdateManagerInput) : MutationResponse!
+  deleteProduct(del: DeleteProductInput): MutationResponse!
+  deleteManager(del: DeleteManagerInput): MutationResponse!
+}
+
+# Object : Manager
+type Manager{
+  id: ID!,
+  name: String!,
+  age: Int!,
+  sex: Sex!,
+  managingProducts:[Product!]!
+  checkMyProduct(id:String!):Product!
 }
 
 # Object : Product
 type Product {
   id: ID!,
-  name: String,
-  price: Int,
-  description: String
+  type: ProductType!,
+  name: String!,
+  price: Int!,
+  description: String!
+  managerid: String!
+  discountedPrice(rate:Int!):Int!
+  managerInfo:Manager!
 }
+
 ```
 - Resolvers exis in [here](./src/Resolver/)
 - **This playground do not use any SQL or NoSQL.(Data Persistency not in guranteed)**

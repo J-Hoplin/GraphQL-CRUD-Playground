@@ -5,7 +5,7 @@ import { Manager, Product } from './Schema'
 mongoose.Schema.Types.String.checkRequired(v => v !== false)
 
 const run = async function () {
-  await connect('mongodb://hoplin:hoplin123!@localhost:27017', {
+  await connect('mongodb://root:password1234!@mongo:27017', {
     dbName: 'gqlplayground',
   });
 }

@@ -97,6 +97,13 @@ export const resolver = {
           description,
           managerid
         } = input as ProductInput
+        const managerList = await ManagerDB.findOne({
+          id: managerid
+        })
+
+        if (!managerList) {
+          throw new Error(`Manager with ID ${managerid} not found`)
+        }
         const productID = v4()
         await ProductDB.create({
           id: productID,

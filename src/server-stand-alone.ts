@@ -9,6 +9,16 @@ import { run } from './Mongo'
 import { loggingPlugin } from './Plugin';
 import logger from './logger'
 
+run()
+  .then((res) => {
+    logger.info("MongoDB Connection Success")
+  })
+  .catch((err) => {
+    logger.error("Error while connecting to MongoDB")
+    process.exit(1)
+  })
+
+
 const typeDefs = readFileSync(
   join(__dirname, '../typeDef.graphql'),
   'utf-8'
