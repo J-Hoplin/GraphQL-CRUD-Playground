@@ -1,0 +1,25 @@
+version: '3.7'
+services:
+  playground:
+    build: .
+    image: "gqlplayground"
+    ports:
+      - "4000:4000"
+    restart: "unless-stopped"
+    depends_on:
+      - mongo
+    networks:
+      - playground-network
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
+    restart: "unless-stopped"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=password1234!
+    networks:
+      - playground-network
+networks:
+  playground-network:
+    driver: bridge

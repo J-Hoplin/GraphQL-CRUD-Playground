@@ -4,6 +4,21 @@ import { join } from 'path'
 import { startStandaloneServer } from '@apollo/server/standalone'
 import { resolver as resolvers } from './Resolver'
 
+// MongoDB Connector
+import { run } from './Mongo'
+import { loggingPlugin } from './Plugin';
+import logger from './logger'
+
+run()
+  .then((res) => {
+    logger.info("MongoDB Connection Success")
+  })
+  .catch((err) => {
+    logger.error("Error while connecting to MongoDB")
+    process.exit(1)
+  })
+
+
 const typeDefs = readFileSync(
   join(__dirname, '../typeDef.graphql'),
   'utf-8'
@@ -15,15 +30,16 @@ const resolver = {
 
 const server = new ApolloServer({
   typeDefs,
-  resolvers: resolver
+  resolvers: resolver,
+  plugins: [loggingPlugin]
 })
 
 
 startStandaloneServer(server)
   .then(res => {
     const { url } = res;
-    console.log(`🚀 Server listening at: ${url}`)
+    logger.info(`🚀 Server listening at: ${url}`)
   })
   .catch(err => {
-    console.error(err);
+    logger.error((err as Error).message)
   })

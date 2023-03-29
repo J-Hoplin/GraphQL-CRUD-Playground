@@ -8,6 +8,20 @@ import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHt
 import { createServer, Server } from 'http'
 import cors from 'cors';
 import bodyParser from 'body-parser'
+// MongoDB Connector
+import { run } from './Mongo'
+// Logging Plugin
+import { loggingPlugin } from './Plugin';
+import logger from './logger'
+
+run()
+  .then((res) => {
+    logger.info("MongoDB Connection Success")
+  })
+  .catch((err) => {
+    logger.error("Error while connecting to MongoDB")
+    process.exit(1)
+  })
 
 const typeDefs = readFileSync(
   join(__dirname, '../typeDef.graphql'),
@@ -25,7 +39,7 @@ const httpServer: Server = createServer(app);
 const server = new ApolloServer({
   typeDefs,
   resolvers: resolver,
-  plugins: [ApolloServerPluginDrainHttpServer({ httpServer })]
+  plugins: [ApolloServerPluginDrainHttpServer({ httpServer }), loggingPlugin]
 })
 
 server.start()
@@ -36,9 +50,9 @@ server.start()
       expressMiddleware(server)
     )
     httpServer.listen(4000, '0.0.0.0', () => {
-      console.log(`🚀 Server listening at port 4000`)
+      logger.info(`🚀 Server listening at port 4000`)
     })
   })
   .catch(err => {
-    console.error(err)
+    logger.error((err as Error).message)
   })

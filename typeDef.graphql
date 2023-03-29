@@ -13,9 +13,17 @@ scalar Datetime
 
 # Input types
 input ProductInput {
-  name: String,
-  price: Int,
-  description: String
+  type: ProductType!
+  name: String!,
+  price: Int!,
+  description: String!
+  managerid: String!
+}
+
+input ManagerInput {
+  name: String!,
+  age: Int!,
+  sex: Sex!
 }
 
 # Input types Update Product
@@ -24,10 +32,23 @@ input UpdateProductInput{
   name: String,
   price: Int,
   description: String
+  type: ProductType
+  managerid: String
+}
+
+input UpdateManagerInput{
+  id: ID!
+  name: String,
+  age: Int,
+  sex: Sex 
 }
 
 # Input types Delete Product
 input DeleteProductInput{
+  id: ID! 
+}
+
+input DeleteManagerInput{
   id: ID!
 }
 
@@ -36,27 +57,62 @@ enum ProductType {
   GADGET
   FOOD
   SOFTWARE
+  ETC
+}
+
+enum Sex{
+  Male
+  Female
 }
 
 
 # Product type
 type Product {
   id: ID!,
-  name: String,
-  price: Int,
-  description: String
+  type: ProductType!,
+  name: String!,
+  price: Int!,
+  description: String!
+  managerid: String!
+  discountedPrice(rate:Int!):Int!
+  managerInfo:Manager!
+}
+
+type MutationResponse{
+  success: Boolean!,
+  message: String!
+}
+
+
+type Manager{
+  id: ID!,
+  name: String!,
+  age: Int!,
+  sex: Sex!,
+  managingProducts:[Product!]!
+  checkMyProduct(id:String!):Product!
 }
 
 
 # Query
 type Query{
-  getAllProduct:[Product!]!
   getProduct(id: ID!): [Product!]!
+  getManager(id: ID!): [Manager!]!
+  getAllProduct:[Product!]!
+  getAllManagers:[Manager!]!
 }
 
 # Mutation
+
+# addManager : add Manager's ID
+
+# addProduct : add Product's ID
+
 type Mutation{
-  addProduct(input: ProductInput): Boolean
-  updateProduct(input: UpdateProductInput): Boolean
-  deleteProduct(input: DeleteProductInput): Boolean
+  addManager(input: ManagerInput):MutationResponse!
+  addProduct(input: ProductInput): MutationResponse!
+  updateProduct(update: UpdateProductInput): MutationResponse!
+  updateManager(update: UpdateManagerInput) : MutationResponse!
+  deleteProduct(del: DeleteProductInput): MutationResponse!
+  deleteManager(del: DeleteManagerInput): MutationResponse!
 }
