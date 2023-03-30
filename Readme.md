@@ -4,6 +4,8 @@ GraphQL CRUD
 - Simple GraphQL CRUD playground using in-memory array
 - This repository is a reference repository for my presentation on GraphQL during class (종합설계, [Prof. 김병서](http://bcnlab.hongik.ac.kr/professor.html))
 ***
+**About GraphQL : https://velog.io/@hoplin/GraphQL**
+***
 # GraphQL Query, Mutation, Object used in Playground
 ```graphql
 
